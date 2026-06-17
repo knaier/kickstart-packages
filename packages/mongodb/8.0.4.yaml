@@ -1,0 +1,53 @@
+# mongodb 8.0.4 — name derived from the folder, version from this filename.
+# `targets` = how to FETCH it; `daemon` = how the agent RUNS + supervises it.
+
+targets:
+  windows/x86_64:
+    url: "https://fastdl.mongodb.org/windows/mongodb-windows-x86_64-8.0.4.zip"
+    sha256: "65dd03fde4f781e0044e0726f76189f509859db0034da1dffe22a65094144dd9"
+    archive: zip
+    bin: "mongod.exe"
+  # MongoDB ships no native Windows-ARM build; x86_64 runs under x64 emulation.
+  windows/aarch64:
+    url: "https://fastdl.mongodb.org/windows/mongodb-windows-x86_64-8.0.4.zip"
+    sha256: "65dd03fde4f781e0044e0726f76189f509859db0034da1dffe22a65094144dd9"
+    archive: zip
+    bin: "mongod.exe"
+  linux/x86_64:
+    url: "https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-ubuntu2204-8.0.4.tgz"
+    sha256: "379af0b4faeb8d5263ed4024ff0781021578fbbc0744b368c245fa8045824155"
+    archive: tar_gz
+    bin: "mongod"
+
+daemon:
+  create_data: true
+  params:
+    port: "27018"
+    repl_set: "rs0"
+    cache_gb: "1.0"
+    data: "${dir}/data"
+  exec:
+    - "${bin}"
+    - "--dbpath"
+    - "${data}"
+    - "--port"
+    - "${port}"
+    - "--replSet"
+    - "${repl_set}"
+    - "--bind_ip"
+    - "127.0.0.1"
+    - "--wiredTigerCacheSizeGB"
+    - "${cache_gb}"
+  health:
+    type: tcp
+    port: "${port}"
+  post_start:
+    package: mongosh
+    wait_port: "${port}"
+    exec:
+      - "--port"
+      - "${port}"
+      - "--quiet"
+      - "--eval"
+      - "${script}"
+    script: "try { rs.status() } catch (e) { rs.initiate({_id:'${repl_set}',members:[{_id:0,host:'127.0.0.1:${port}'}]}) }"

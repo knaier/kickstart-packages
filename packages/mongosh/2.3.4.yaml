@@ -1,0 +1,19 @@
+# mongosh 2.3.4 — a CLI tool (used by mongodb's post_start), not a daemon, so it
+# has `targets` but no `daemon` block.
+
+targets:
+  windows/x86_64:
+    url: "https://downloads.mongodb.com/compass/mongosh-2.3.4-win32-x64.zip"
+    sha256: "8ed6721a1f1e18101593d317a40ccc203e7a604d0a9c0ce4f1cb5649f82bedd1"
+    archive: zip
+    bin: "mongosh.exe"
+  windows/aarch64:
+    url: "https://downloads.mongodb.com/compass/mongosh-2.3.4-win32-x64.zip"
+    sha256: "8ed6721a1f1e18101593d317a40ccc203e7a604d0a9c0ce4f1cb5649f82bedd1"
+    archive: zip
+    bin: "mongosh.exe"
+  linux/x86_64:
+    url: "https://downloads.mongodb.com/compass/mongosh-2.3.4-linux-x64.tgz"
+    sha256: "00cbc00b6173f043ebceeb585bc381a90452da9b72be911b3b43b72a192a0735"
+    archive: tar_gz
+    bin: "mongosh"

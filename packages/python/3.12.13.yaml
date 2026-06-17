@@ -1,0 +1,22 @@
+# python 3.12.13 — relocatable, self-contained CPython (python-build-standalone).
+# A runtime/tool (no daemon block): services declare it as a dependency and run
+# the PACKAGED interpreter instead of the box python. The archive has several
+# `python.exe`, so `bin` is a SUBPATH (joined directly, not searched).
+
+targets:
+  windows/x86_64:
+    url: "https://github.com/astral-sh/python-build-standalone/releases/download/20260610/cpython-3.12.13+20260610-x86_64-pc-windows-msvc-install_only.tar.gz"
+    sha256: "f5e4d9f856567493776f3d1e832c939fbaba5dcbcc5e0492a82ecfceea83b316"
+    archive: tar_gz
+    bin: "python/python.exe"
+  # No native Windows-ARM build pinned; x86_64 runs under x64 emulation.
+  windows/aarch64:
+    url: "https://github.com/astral-sh/python-build-standalone/releases/download/20260610/cpython-3.12.13+20260610-x86_64-pc-windows-msvc-install_only.tar.gz"
+    sha256: "f5e4d9f856567493776f3d1e832c939fbaba5dcbcc5e0492a82ecfceea83b316"
+    archive: tar_gz
+    bin: "python/python.exe"
+  linux/x86_64:
+    url: "https://github.com/astral-sh/python-build-standalone/releases/download/20260610/cpython-3.12.13+20260610-x86_64-unknown-linux-gnu-install_only.tar.gz"
+    sha256: "c218f50baeb2c06a30c2f03db5986b2bad6ab7c8a52faad2d5a59bda0677b93a"
+    archive: tar_gz
+    bin: "python/bin/python3"

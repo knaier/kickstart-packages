@@ -1,0 +1,53 @@
+# otelcol-contrib 0.116.0 — the OpenTelemetry Collector (contrib distribution).
+
+targets:
+  windows/x86_64:
+    url: "https://github.com/open-telemetry/opentelemetry-collector-releases/releases/download/v0.116.0/otelcol-contrib_0.116.0_windows_amd64.tar.gz"
+    sha256: "c6ad28a38e2e98387470bc48ea89795ddab6f1de1b55033b0311a37b565270c8"
+    archive: tar_gz
+    bin: "otelcol-contrib.exe"
+  windows/aarch64:
+    url: "https://github.com/open-telemetry/opentelemetry-collector-releases/releases/download/v0.116.0/otelcol-contrib_0.116.0_windows_amd64.tar.gz"
+    sha256: "c6ad28a38e2e98387470bc48ea89795ddab6f1de1b55033b0311a37b565270c8"
+    archive: tar_gz
+    bin: "otelcol-contrib.exe"
+  linux/x86_64:
+    url: "https://github.com/open-telemetry/opentelemetry-collector-releases/releases/download/v0.116.0/otelcol-contrib_0.116.0_linux_amd64.tar.gz"
+    sha256: "59e53bef012a5503c925aaba4d25e8acdf4d0fb60949551123daa4806700bf56"
+    archive: tar_gz
+    bin: "otelcol-contrib"
+
+daemon:
+  params:
+    port: "4318"
+    config: "${dir}/otel.yaml"
+  exec:
+    - "${bin}"
+    - "--config"
+    - "${config}"
+  health:
+    type: tcp
+    port: "${port}"
+  config_scaffold:
+    path: "${config}"
+    template: |
+      # starter OpenTelemetry Collector config (scaffolded by `ks agent daemon add otelcol-contrib`)
+      receivers:
+        otlp:
+          protocols:
+            http:
+              endpoint: 127.0.0.1:${port}
+      exporters:
+        debug:
+          verbosity: basic
+      service:
+        pipelines:
+          traces:
+            receivers: [otlp]
+            exporters: [debug]
+          metrics:
+            receivers: [otlp]
+            exporters: [debug]
+          logs:
+            receivers: [otlp]
+            exporters: [debug]

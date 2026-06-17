@@ -1,0 +1,12 @@
+# Optional per-package metadata. It does NOT enumerate versions — the default is
+# the highest published `<version>.yaml` in this folder UNLESS pinned here.
+# Holds: an optional default pin, named channels, and descriptive metadata.
+
+default: "8.0.4"          # optional; remove to auto-select the highest published
+type: database
+source: mongodb-official
+homepage: "https://www.mongodb.com"
+
+channels:
+  stable: "8.0.4"
+  "8": "8.0.4"            # mongodb@8 → this version

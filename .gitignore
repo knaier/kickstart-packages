@@ -1,0 +1,4 @@
+# Downloaded runtime archives staged for upload as GitHub Release assets.
+# NEVER committed to git (binaries bloat history forever) — they live as
+# release assets; only the signed index.json is versioned in git.
+/artifacts/

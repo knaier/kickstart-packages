@@ -1,0 +1,6 @@
+type: telemetry
+source: opentelemetry
+homepage: "https://opentelemetry.io/docs/collector/"
+# No `default:` pin — kickstart auto-selects the highest published version.
+channels:
+  stable: "0.116.0"
