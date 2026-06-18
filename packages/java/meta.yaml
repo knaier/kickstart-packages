@@ -1,0 +1,12 @@
+default: "21.0.11"
+type: runtime
+source: eclipse-temurin
+homepage: "https://adoptium.net/"
+channels:
+  stable: "21.0.11"
+  lts: "21.0.11"
+  "8": "~8.0.0"
+  "11": "~11.0.0"
+  "17": "~17.0.0"
+  "21": "~21.0.0"
+  "25": "~25.0.0"

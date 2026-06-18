@@ -1,0 +1,23 @@
+# OpenJDK 25.0.3 (Eclipse Temurin, HotSpot) - relocatable, self-contained JDK.
+# A runtime/tool (no daemon block): services declare it as a dependency and run
+# the PACKAGED `java` instead of the box JDK. The archive unpacks to a top-level
+# `jdk-25.0.3+9/` dir, so `bin` is a SUBPATH (joined directly, not searched). JAVA_HOME
+# is the dir two levels up from `${pkg.java}` if a service needs it.
+
+targets:
+  windows/x86_64:
+    url: "https://github.com/adoptium/temurin25-binaries/releases/download/jdk-25.0.3%2B9/OpenJDK25U-jdk_x64_windows_hotspot_25.0.3_9.zip"
+    sha256: "709312cd0420296d9b9de917fe6e28a5b979e875ee5ab91783fb79bcd5857235"
+    archive: zip
+    bin: "jdk-25.0.3+9/bin/java.exe"
+  # No native Windows-ARM build pinned; x86_64 runs under x64 emulation.
+  windows/aarch64:
+    url: "https://github.com/adoptium/temurin25-binaries/releases/download/jdk-25.0.3%2B9/OpenJDK25U-jdk_x64_windows_hotspot_25.0.3_9.zip"
+    sha256: "709312cd0420296d9b9de917fe6e28a5b979e875ee5ab91783fb79bcd5857235"
+    archive: zip
+    bin: "jdk-25.0.3+9/bin/java.exe"
+  linux/x86_64:
+    url: "https://github.com/adoptium/temurin25-binaries/releases/download/jdk-25.0.3%2B9/OpenJDK25U-jdk_x64_linux_hotspot_25.0.3_9.tar.gz"
+    sha256: "69264a7a211bf5029830d07bc3370f879769d62ebc5b5488e90c9343a2da0e1f"
+    archive: tar_gz
+    bin: "jdk-25.0.3+9/bin/java"

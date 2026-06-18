@@ -1,0 +1,22 @@
+# python 3.14.6 — relocatable, self-contained CPython (python-build-standalone).
+# A runtime/tool (no daemon block): services declare it as a dependency and run
+# the PACKAGED interpreter instead of the box python. The archive has several
+# `python.exe`, so `bin` is a SUBPATH (joined directly, not searched).
+
+targets:
+  windows/x86_64:
+    url: "https://github.com/astral-sh/python-build-standalone/releases/download/20260610/cpython-3.14.6+20260610-x86_64-pc-windows-msvc-install_only.tar.gz"
+    sha256: "8bb7fa0570d77cfb321df1763619f2cfaadbe1502c7717773cbe023ebd639472"
+    archive: tar_gz
+    bin: "python/python.exe"
+  # No native Windows-ARM build pinned; x86_64 runs under x64 emulation.
+  windows/aarch64:
+    url: "https://github.com/astral-sh/python-build-standalone/releases/download/20260610/cpython-3.14.6+20260610-x86_64-pc-windows-msvc-install_only.tar.gz"
+    sha256: "8bb7fa0570d77cfb321df1763619f2cfaadbe1502c7717773cbe023ebd639472"
+    archive: tar_gz
+    bin: "python/python.exe"
+  linux/x86_64:
+    url: "https://github.com/astral-sh/python-build-standalone/releases/download/20260610/cpython-3.14.6+20260610-x86_64-unknown-linux-gnu-install_only.tar.gz"
+    sha256: "288f0e2c728f2bec803c4bffbd0ad3940190221ef39c1540b69d5e4ad6861b10"
+    archive: tar_gz
+    bin: "python/bin/python3"
